@@ -12,6 +12,7 @@ function AccountContainer() {
         setTransactions(data);
       });
   }, []);
+
   function handleFormSubmission(newtransactioninput){
         console.log(newtransactioninput)
         setTransactions((transactions)=>[...transactions,newtransactioninput])
@@ -27,9 +28,16 @@ function AccountContainer() {
            .then(newItemTRansacted=>setTransactions(transactions=>[...transactions,newItemTRansacted]))
              .catch((error)=>{console.log(error)})
   }
+
+  function handleSearch(search){
+       console.log(search)
+       const filterSEarch = transactions.filter((transaction)=>{return transaction.description.toLowerCase().includes(search.toLowerCase()) })
+       setTransactions(filterSEarch)
+       console.log(transactions)
+  }
   return (
     <div>
-      <Search />
+      <Search onUserSearch={handleSearch}/>
       <AddTransactionForm onSubmission={handleFormSubmission}/>
       <TransactionsList transactions={transactions}/>
     </div>

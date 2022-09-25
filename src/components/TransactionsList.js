@@ -21,7 +21,7 @@ function TransactionsList({transactions}) {
         </tr>
         {
           transactions.map((singletransaction)=>{
-            return <Transaction date={singletransaction.date}  description={singletransaction.description} amount={singletransaction.amount} category={singletransaction.category}></Transaction>
+            return <Transaction date={singletransaction.date}  description={singletransaction.description} amount={singletransaction.amount} category={singletransaction.category} id={singletransaction.id}></Transaction>
           })
         }
         
