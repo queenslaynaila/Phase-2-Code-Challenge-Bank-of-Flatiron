@@ -15,7 +15,6 @@ function AccountContainer() {
 
   function handleFormSubmission(newtransactioninput){
         console.log(newtransactioninput)
-        setTransactions((transactions)=>[...transactions,newtransactioninput])
         const configurationData =  {
           method: "POST",
           headers: {
@@ -32,6 +31,7 @@ function AccountContainer() {
   function handleSearch(search){
        console.log(search)
        const filterSEarch = transactions.filter((transaction)=>{return transaction.description.toLowerCase().includes(search.toLowerCase()) })
+       
        setTransactions(filterSEarch)
        console.log(transactions)
   }
