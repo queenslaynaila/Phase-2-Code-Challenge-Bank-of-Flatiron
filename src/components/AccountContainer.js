@@ -35,11 +35,34 @@ function AccountContainer() {
        setTransactions(filterSEarch)
        console.log(transactions)
   }
+  function deleteTrans(transactionid){
+  
+    const  itemToBeRemoved =  transactions[transactionid]
+    
+    const  dataToDelete =  {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      } 
+    }
+    const filterTransactions = transactions.filter(
+			(singletransaction) => singletransaction !== itemToBeRemoved
+		);
+    
+
+
+    fetch(`http://localhost:8001/transactions/${transactionid}`,dataToDelete)
+      .then(()=>setTransactions(filterTransactions))
+         
+      
+  }
+  
+
   return (
     <div>
       <Search onUserSearch={handleSearch}/>
       <AddTransactionForm onSubmission={handleFormSubmission}/>
-      <TransactionsList transactions={transactions}/>
+      <TransactionsList  handleDelete={deleteTrans} transactions={transactions}/>
     </div>
   );
 }
